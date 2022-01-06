@@ -8,6 +8,6 @@ public class Cli {
         System.out.print("May I have your name? ");
         Scanner scan = new Scanner(System.in);
         String name = scan.nextLine();
-        System.out.println (String.format("Hello, %s!", name));
+        System.out.println(String.format("Hello, %s!", name));
     }
 }
