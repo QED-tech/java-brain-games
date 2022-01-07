@@ -1,30 +1,24 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
-
 import java.util.Scanner;
 
 public class Even {
 
-    public static void run() {
-        var name = Cli.greeting();
+    public static void run(String name, int numberOfLaps) {
         Even.printRules();
 
-        final int numberOfLaps = 3;
-        final int maximumNumber = 20;
-
         for (var i = 0; i < numberOfLaps; i++) {
-            var number = (int) (Math.random() * maximumNumber);
-            System.out.printf("Question: %d%n", number);
+            var question = Even.getQuestion();
+            System.out.printf("Question: %s%n", question);
 
             Scanner scan = new Scanner(System.in);
             String answer = scan.nextLine();
 
-            boolean answerIsCorrect = Even.isEven(number) == answerToBoolean(answer)
+            boolean answerIsCorrect = Even.isEven(Integer.parseInt(question)) == answerToBoolean(answer)
                     && (answer.equals("yes") || answer.equals("no"));
 
             if (!answerIsCorrect) {
-                Even.printWrongAnswer(answer, name);
+                Even.printWrongAnswer(answer, answer.equals("no") ? "yes" : "no", name);
                 return;
             }
 
@@ -34,8 +28,12 @@ public class Even {
         System.out.printf("Congratulations, %s!%n", name);
     }
 
-    private static void printWrongAnswer(String answer, String name) {
-        var correctAnswer = answer.equals("no") ? "yes" : "no";
+    private static String getQuestion() {
+        final int maximumNumber = 20;
+        return Integer.toString((int) (Math.random() * maximumNumber));
+    }
+
+    private static void printWrongAnswer(String answer, String correctAnswer, String name) {
         System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.%n", answer, correctAnswer);
         System.out.printf("Let's try again, %s!%n", name);
     }
