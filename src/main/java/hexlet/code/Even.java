@@ -33,12 +33,8 @@ public class Even {
     }
 
     private static void printWrongAnswer(String answer, String name) {
-        if (answer.equals("yes")) {
-            System.out.printf("'%s' is wrong answer ;(. Correct answer was 'no'.%n", answer);
-        } else {
-            System.out.printf("'%s' is wrong answer ;(. Correct answer was 'yes'.%n", answer);
-        }
-
+        var correctAnswer = answer.equals("no") ? "yes" : "no";
+        System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.%n", answer, correctAnswer);
         System.out.printf("Let's try again, %s!%n", name);
     }
 
