@@ -10,6 +10,8 @@ public class App {
                 1 - Greet
                 2 - Even
                 3 - Calc
+                4 - GDC
+                5 - Progression
                 0 - Exit
                 """);
 
