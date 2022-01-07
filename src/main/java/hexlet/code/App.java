@@ -12,6 +12,7 @@ public class App {
                 3 - Calc
                 4 - GDC
                 5 - Progression
+                6 - Prime
                 0 - Exit
                 """);
 
