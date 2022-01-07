@@ -1,9 +1,10 @@
 package hexlet.code.games;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Progression {
+
+    private static int missingNumber;
 
     public static void run(String name, int numberOfLaps) {
         Progression.printRules();
@@ -15,7 +16,7 @@ public class Progression {
             Scanner scan = new Scanner(System.in);
             String answer = scan.nextLine();
 
-            int correctAnswer = Progression.progression(question);
+            int correctAnswer = Progression.missingNumber;
             boolean answerIsCorrect = Integer.parseInt(answer) == correctAnswer;
 
             if (!answerIsCorrect) {
@@ -27,26 +28,6 @@ public class Progression {
         }
 
         System.out.printf("Congratulations, %s!%n", name);
-    }
-
-    private static int progression(String question) {
-       String[] numbers = question.split(" ");
-       int missingNumberIndex = 0;
-
-        for (var i = 0; i < numbers.length; i++) {
-            if (Objects.equals(numbers[i], "..")) {
-                missingNumberIndex = i;
-                break;
-            }
-        }
-
-        int missingNumber = Integer.parseInt(numbers[missingNumberIndex - 1]);
-
-        if (missingNumberIndex < 2) {
-            return Integer.parseInt(numbers[4]) - Integer.parseInt(numbers[3]) + missingNumber;
-        }
-
-        return Integer.parseInt(numbers[1]) - Integer.parseInt(numbers[0]) + missingNumber;
     }
 
     private static String getQuestion() {
@@ -68,6 +49,7 @@ public class Progression {
         }
 
         var randomIndex = (int) (Math.random() * progressionLength);
+        Progression.missingNumber = Integer.parseInt(progressionNumbers[randomIndex]);
         progressionNumbers[randomIndex] = "..";
 
         return String.join(" ", progressionNumbers);
